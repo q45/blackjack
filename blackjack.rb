@@ -1,4 +1,6 @@
 puts "Welcome to blackjack"
+puts "What is your name?"
+player = gets.chomp
 
 def card_total(cards)
 	card_value = cards.map{|c| c[0]}
@@ -41,33 +43,33 @@ dealer_cards << deck.pop
 player_total = card_total(player_cards)
 dealer_total = card_total(dealer_cards)
 
-puts "Player has #{player_cards} for a total of #{player_total}"
+puts "#{player} you have #{player_cards} for a total of #{player_total}"
 puts "Dealer has #{dealer_cards} for a total of #{dealer_total}"
 
 puts ""
 
 if dealer_total == 21
-	puts "Sorry Dealer hit BLACKJACK. YOU LOST"
+	puts "Sorry #{player}. Dealer hit BLACKJACK. YOU LOST"
 	exit
 end
 
 #Player Turn
 if player_total == 21
-	puts "Congratulations, you hit blackjack, you win"
+	puts "Congratulations #{player}, you hit blackjack, you win"
 	exit
 end
 
 while player_total < 21
-	puts "What would you like to do? 1) hit 2) stay"
+	puts "#{player} what would you like to do? 1) hit 2) stay"
 	hit_or_stay = gets.chomp
 
 	if !['1', '2'].include?(hit_or_stay)
-		puts "Please enter a 1 or 2"
+		puts "#{player} please enter a 1 or 2"
 		next
 	end
 
 	if hit_or_stay == "2"
-		puts "You have chosen to stay"
+		puts " #{player} you have chosen to stay"
 		break
 	end
 
@@ -79,17 +81,17 @@ while player_total < 21
 	puts "Your total now is: #{player_total}"
 
 	if player_total == 21
-		puts "Congratulationsm you hit blackjack. You Win"
+		puts "Congratulations #{player} you hit blackjack. You Win"
 		exit
 	elsif player_total > 21
-		puts "Sorry you BUST!"
+		puts "Sorry #{player} you BUST!"
 		exit
 	end
 end
 
 #Dealer Turn
 if dealer_total == 21
-	puts "Sorry, dealer hit blackjack. You LOSE!"
+	puts "Sorry #{player}, dealer hit blackjack. You LOSE!"
 	exit
 end
 
@@ -102,10 +104,10 @@ while dealer_total < 17
 	puts "Dealer total is now #{dealer_total}"
 
 	 if dealer_total == 21
-	 	puts "Sorry, dealer hit blackjack. You LOSE"
+	 	puts "Sorry #{player}, dealer hit blackjack. You LOSE"
 	 	exit
 	 elsif dealer_total > 21
-	 	puts "Congrats! You made the Dealer BUST! You WIN"
+	 	puts "Congrats! #{player} You made the Dealer BUST! You WIN"
 	 	exit
 	 end
 end
@@ -122,7 +124,7 @@ puts ""
 if dealer_total > player_total
 	puts "Sporry, dealer wins"
 elsif dealer_total < player_total
-	puts "Congrats man. you win"
+	puts "Congrats #{player}. YOU WIN"
 else
 	puts "Its a tie... LAME"
 end
